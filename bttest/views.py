@@ -8,7 +8,6 @@ members = [
         {'id': '1', 'name': 'McGiney, Mark', 'email': 'mark@marksautomark.com', 'status' : 'Administrator'},
         {'id': '2', 'name': 'Alan, George', 'email': 'george@marksautomark.com', 'status' : 'Employee'},
         {'id': '3', 'name': 'Joned, Bob', 'email': 'bob@marksautomark.com', 'status' : 'Employee'},
-        {'id': '4', 'name': 'O\'Brieb, Barbara', 'email': 'barbara@marksautomark.com', 'status' : 'Employee'},
     ]
 
 def index(request):
