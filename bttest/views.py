@@ -14,9 +14,18 @@ members = [
 def index(request):
     if request.method == 'POST':
         params = request.POST
-        member_form = MemberForm(request.POST)
         
-        if member_form.is_valid():
+        if "action" in params and params["action"] is not None:
+            index = 0
+            for member in members:
+                if member['id'] == params["action"]:
+                    break
+                index = index + 1
+                
+            del members[index]
+            return render_to_response('index.html', {'form': MemberForm(), 'members': members}, context_instance=RequestContext(request))
+        elif member_form.is_valid():
+            member_form = MemberForm(request.POST)
             mem_id = len(members)
             name = member_form.cleaned_data['last_name'] + ", " + member_form.cleaned_data['first_name']
             members.append({'id': mem_id,
@@ -25,18 +34,19 @@ def index(request):
                             'status': member_form.cleaned_data['status']  
                             })
             
-        return render_to_response('index.html', {'form': member_form, 'members': members}, context_instance=RequestContext(request))
+            return render_to_response('index.html', {'form': member_form, 'members': members}, context_instance=RequestContext(request))
+        else:
+            return render_to_response('index.html', {'form': MemberForm(), 'members': members}, context_instance=RequestContext(request))
     else:    
         return render_to_response('index.html', {'form': MemberForm(), 'members': members}, context_instance=RequestContext(request))
     
-def delete(request, id):
-    if id:
+def delete(request, memberid=None):
+    if memberid:
         index = 0
         for member in members:
-            if member.id == id:
+            if member.id == memberid:
                 break
             index = index + 1
             
-        
         del members[index]
         return render_to_response('index.html', {'form': member_form, 'members': members}, context_instance=RequestContext(request))

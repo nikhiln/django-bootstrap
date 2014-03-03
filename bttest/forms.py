@@ -30,17 +30,22 @@ class MemberForm(forms.Form):
         required = False,
         label = 'Member Status'
     )
+    action = forms.CharField(
+        required = False,
+        widget = forms.HiddenInput()
+    )
     
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.help_text_inline = True
-        self.helper.form_class = 'form-inline'
-        add_btn = Submit('submit', 'Add +', css_class='btn btn-primary offset4')
+        self.helper.form_class = 'form-inline main-form'
+        add_btn = Submit('btnsubmit', 'Add +', css_class='btn btn-primary offset4')
         self.helper.layout = Layout(
             Div(Field('first_name'), css_class="col-first-name"),
             Div(Field('last_name'), css_class="col-last-name"),
             Div(Field('email'), css_class="col-email"),
             Div(Field('status'), css_class="col-status"),
+            Div(Field('action')),
             Div(Div(
                     HTML('<label>&nbsp;</label>'),
                     add_btn, css_class="form-group"

@@ -22,7 +22,7 @@
 	            <tr>
 	                <td class="name">{{member.name}}</td>
 	                <td class="email">{{member.email}}</td>
-	                <td class="delete"><a href="delete/{{member.id}}">Delete</a></td>
+	                <td class="delete"><a id="{{member.id}}" class="act-delete">Delete</a></td>
 	                <td class="status {% if member.status == 'Administrator' %} red {% endif %}">{{member.status}}</td>
 	                <td class="action"><a href="#"><span class="glyphicon glyphicon-transfer"></span></a></td>
 	            </tr>
@@ -45,7 +45,13 @@
             
             return true;
        });
-
+		
+		
+	   $(".act-delete").on("click", function() {
+			$("[name=action]").val($(this).attr("id"));
+			$('.main-form').submit();
+	   });
+		
        $('.member-list td.action a').click(function(){
            var status = $(this).parent().parent().find('.status').first();
            if (status.text()=="Employee"){

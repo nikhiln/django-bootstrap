@@ -133,6 +133,11 @@ form.form-inline .form-group {
 }
 
 
+a.act-delete {
+	cursor: pointer;
+}
+
+
 @media (max-width: 767px) {
     .row {
         margin-left: 0 !important;
@@ -158,6 +163,7 @@ form.form-inline .form-group {
         font-size: 14px;
     }
 }
+
 
 @media (max-width: 480px) {
     .member-list {

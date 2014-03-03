@@ -132,6 +132,9 @@ form.form-inline .form-group {
     color: red;
 }
 
+a.act-delete {
+	cursor: pointer;
+}
 
 @media (max-width: 767px) {
     .row {
