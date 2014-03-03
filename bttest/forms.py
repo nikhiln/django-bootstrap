@@ -40,7 +40,7 @@ class MemberForm(forms.Form):
             Div(Field('first_name'), css_class="col-first-name"),
             Div(Field('last_name'), css_class="col-last-name"),
             Div(Field('email'), css_class="col-email"),
-            Div(Field('status', css_class="dropdown-menu"), css_class="col-status"),
+            Div(Field('status'), css_class="col-status"),
             Div(Div(
                     HTML('<label>&nbsp;</label>'),
                     add_btn, css_class="form-group"
