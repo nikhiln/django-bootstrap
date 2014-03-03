@@ -2,7 +2,6 @@
 from django.shortcuts import render_to_response
 from django.shortcuts import RequestContext
 from forms import MemberForm
-from awaazde.streamit.views import members
  
 def index(request, id):
     #Passing member data from view, these data should be retrieved from database
