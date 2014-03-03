@@ -8,6 +8,14 @@ members = [
         {'id': '1', 'name': 'McGiney, Mark', 'email': 'mark@marksautomark.com', 'status' : 'Administrator'},
         {'id': '2', 'name': 'Alan, George', 'email': 'george@marksautomark.com', 'status' : 'Employee'},
         {'id': '3', 'name': 'Joned, Bob', 'email': 'bob@marksautomark.com', 'status' : 'Employee'},
+        {'id': '4', 'name': 'O\'Brieb, Barbara', 'email': 'barbara@marksautomark.com', 'status' : 'Employee'},
+    ]
+
+members2 = [
+        {'id': '1', 'name': 'McGiney, Mark', 'email': 'mark@marksautomark.com', 'status' : 'Administrator'},
+        {'id': '2', 'name': 'Alan, George', 'email': 'george@marksautomark.com', 'status' : 'Employee'},
+        {'id': '3', 'name': 'Joned, Bob', 'email': 'bob@marksautomark.com', 'status' : 'Employee'},
+        {'id': '4', 'name': 'O\'Brieb, Barbara', 'email': 'barbara@marksautomark.com', 'status' : 'Employee'},
     ]
 
 def index(request):
@@ -65,16 +73,16 @@ def demo2(request):
             else:
                 mem_id = len(members)
                 name = params['last_name'] + ", " + params['first_name']
-                members.append({'id': mem_id,
+                members2.append({'id': mem_id,
                                     'name': name,
                                     'email': params['email'],
                                     'status': params['status']  
                                     })
                 
             if errormessage is not None:
-                return render_to_response('index2.html', {'members': members, 'error': errormessage}, context_instance=RequestContext(request))
+                return render_to_response('index2.html', {'members': members2, 'error': errormessage}, context_instance=RequestContext(request))
             else:
-                return render_to_response('index2.html', {'members': members}, context_instance=RequestContext(request))
+                return render_to_response('index2.html', {'members': members2}, context_instance=RequestContext(request))
     else:    
         return render_to_response('index2.html', {'members': members}, context_instance=RequestContext(request))
     
