@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+ 
+{% block content %}
+	<div class="row">
+       <h1 class="main-header">Member Directory Admin</h1>
+    </div>
+    
+    <div class="row input-wrap">
+   		{% crispy form %}
+   	</div>
+   	 <div class="row">
+   	 	{% if members %}
+	        <table class="table table-bordered member-list">
+	            <tr>
+	                <th class="name">Member Name</th>
+	                <th class="email">Email Address</th>
+	                <th class="edit">Edit</th>
+	                <th class="status" colspan="2">Status</th>
+	            </tr>
+	            {% for member in members %}
+	            <tr>
+	                <td class="name">{{member.name}}</td>
+	                <td class="email">{{member.email}}</td>
+	                <td class="edit"><a href="#">Edit</a></td>
+	                <td class="status {% if member.status == 'Administrator' %} red {% endif %}">{{member.status}}</td>
+	                <td class="action"><a href="#"><span class="glyphicon glyphicon-transfer"></span></a></td>
+	            </tr>
+	            {% endfor %}
+	        </table>
+		{% endif %}
+	</div>
+	
+	<script>
+    $(document).ready(function(){
+       $('.input-wrap .dropdown-menu a').click(function(){
+            $('.input-wrap .dropdown-toggle').val($(this).text());
+            if ($(this).hasClass('red'))
+                $('.input-wrap .dropdown-toggle').addClass('red');
+            else
+                $('.input-wrap .dropdown-toggle').removeClass('red');
+            if ($('.input-wrap .btn-group').hasClass('open'))
+               $('.input-wrap .btn-group').removeClass('open');
+            return false;
+       });
+
+       $('.member-list td.action a').click(function(){
+           var status = $(this).parent().parent().find('.status').first();
+           if (status.text()=="Employee"){
+               status.text("Administrator");
+               status.addClass('red');
+           }
+           else if (status.text()=="Administrator") {
+               status.text("Employee");
+               status.removeClass('red');
+           }
+           return false;
+       });
+    });
+</script>
+{% endblock %}
