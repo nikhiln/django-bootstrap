@@ -10,8 +10,8 @@ members = [
         {'id': '3', 'name': 'Joned, Bob', 'email': 'bob@marksautomark.com', 'status' : 'Employee'},
         {'id': '4', 'name': 'O\'Brieb, Barbara', 'email': 'barbara@marksautomark.com', 'status' : 'Employee'},
     ]
-def index(request, id):
-    
+
+def index(request):
     if request.method == 'POST':
         params = request.POST
         member_form = MemberForm(request.POST)
