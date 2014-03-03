@@ -15,28 +15,27 @@ def index(request):
     if request.method == 'POST':
         params = request.POST
         
-        if "action" in params and params["action"] is not None:
+        if "action" in params and params["action"] is not None and params["action"] != '':
             index = 0
             for member in members:
                 if member['id'] == params["action"]:
+                    del members[index]
                     break
                 index = index + 1
-                
-            del members[index]
-            return render_to_response('index.html', {'form': MemberForm(), 'members': members}, context_instance=RequestContext(request))
-        elif member_form.is_valid():
-            member_form = MemberForm(request.POST)
-            mem_id = len(members)
-            name = member_form.cleaned_data['last_name'] + ", " + member_form.cleaned_data['first_name']
-            members.append({'id': mem_id,
-                            'name': name,
-                            'email': member_form.cleaned_data['email'],
-                            'status': member_form.cleaned_data['status']  
-                            })
             
-            return render_to_response('index.html', {'form': member_form, 'members': members}, context_instance=RequestContext(request))
-        else:
             return render_to_response('index.html', {'form': MemberForm(), 'members': members}, context_instance=RequestContext(request))
+        else:
+            member_form = MemberForm(request.POST) 
+            
+            if member_form.is_valid():
+                mem_id = len(members)
+                name = member_form.cleaned_data['last_name'] + ", " + member_form.cleaned_data['first_name']
+                members.append({'id': mem_id,
+                                'name': name,
+                                'email': member_form.cleaned_data['email'],
+                                'status': member_form.cleaned_data['status']  
+                                })
+            return render_to_response('index.html', {'form': member_form, 'members': members}, context_instance=RequestContext(request))
     else:    
         return render_to_response('index.html', {'form': MemberForm(), 'members': members}, context_instance=RequestContext(request))
     

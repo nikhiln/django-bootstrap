@@ -4,6 +4,7 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+from django.core.exceptions import ValidationError
  
  
 class MemberForm(forms.Form):
@@ -34,6 +35,13 @@ class MemberForm(forms.Form):
         required = False,
         widget = forms.HiddenInput()
     )
+    
+    def clean_status(self):
+        status = self.cleaned_data.get("status")
+        if status == "-1":
+            raise ValidationError("This field is required.")
+        
+        return status
     
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
