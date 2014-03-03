@@ -53,9 +53,9 @@ def demo2(request):
         
         if "action" in params and params["action"] is not None and params["action"] != '':
             index = 0
-            for member in members:
+            for member in members2:
                 if member['id'] == params["action"]:
-                    del members[index]
+                    del members2[index]
                     break
                 index = index + 1
             
