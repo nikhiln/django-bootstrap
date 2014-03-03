@@ -33,8 +33,8 @@
 	
 	<script>
     $(document).ready(function(){
-       $('.input-wrap .dropdown-menu option[value="Administrator"]').addClass('red');
-       $('.input-wrap .dropdown-menu').change(function(){
+       $('#id_status option[value="Administrator"]').addClass('red');
+       $('#id_status').change(function(){
             if ($(this).val() == "Administrator")
                 $(this).addClass('red');
             else
