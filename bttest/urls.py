@@ -9,8 +9,9 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'bttest.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+    url(r'^demo2/','bttest.views.demo2'),
     url(r'^','bttest.views.index'),
-    url(r'^delete/(?P<memberid>\w+)/$','bttest.views.delete'),
+    #url(r'^delete/(?P<memberid>\w+)/$','bttest.views.delete'),
     #url(r'^admin/', include(admin.site.urls)),
 )
 

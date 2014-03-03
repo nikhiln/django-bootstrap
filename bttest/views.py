@@ -39,6 +39,46 @@ def index(request):
     else:    
         return render_to_response('index.html', {'form': MemberForm(), 'members': members}, context_instance=RequestContext(request))
     
+
+def demo2(request):
+    if request.method == 'POST':
+        params = request.POST
+        
+        if "action" in params and params["action"] is not None and params["action"] != '':
+            index = 0
+            for member in members:
+                if member['id'] == params["action"]:
+                    del members[index]
+                    break
+                index = index + 1
+            
+            return render_to_response('index2.html', {'members': members}, context_instance=RequestContext(request))
+        else:
+            errormessage = None
+            if params.get('first_name') == '' or params.get('first_name') is None:
+                errormessage = "Please enter first name"
+            elif params.get('last_name') == '' or params.get('last_name') is None:
+                errormessage = "Please enter last name"
+            elif params.get('email') == '' or params.get('email') is None:
+                errormessage = "Please enter email"
+            elif params.get('status') == '' or params.get('status') is None or params.get('status') == 'Select':
+                errormessage = "Please select status"
+            else:
+                mem_id = len(members)
+                name = params['last_name'] + ", " + params['first_name']
+                members.append({'id': mem_id,
+                                    'name': name,
+                                    'email': params['email'],
+                                    'status': params['status']  
+                                    })
+                
+            if errormessage is not None:
+                return render_to_response('index2.html', {'members': members, 'error': errormessage}, context_instance=RequestContext(request))
+            else:
+                return render_to_response('index2.html', {'members': members}, context_instance=RequestContext(request))
+    else:    
+        return render_to_response('index2.html', {'members': members}, context_instance=RequestContext(request))
+    
 def delete(request, memberid=None):
     if memberid:
         index = 0
