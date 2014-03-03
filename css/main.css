@@ -109,7 +109,7 @@ form.form-inline .form-group {
 .member-list th.email {
     width: 41.8%
 }
-.member-list th.edit {
+.member-list th.delete {
     width: 9.4%
 }
 .member-list td.status {
@@ -121,7 +121,7 @@ form.form-inline .form-group {
     word-break: break-all;
 }
 
-.member-list .edit,
+.member-list .delete,
 .member-list .status,
 .member-list .action {
     text-align: center;

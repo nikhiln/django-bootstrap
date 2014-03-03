@@ -15,14 +15,14 @@
 	            <tr>
 	                <th class="name">Member Name</th>
 	                <th class="email">Email Address</th>
-	                <th class="edit">Edit</th>
+	                <th class="delete">Delete</th>
 	                <th class="status" colspan="2">Status</th>
 	            </tr>
 	            {% for member in members %}
 	            <tr>
 	                <td class="name">{{member.name}}</td>
 	                <td class="email">{{member.email}}</td>
-	                <td class="edit"><a href="#">Edit</a></td>
+	                <td class="delete"><a href="#">Delete</a></td>
 	                <td class="status {% if member.status == 'Administrator' %} red {% endif %}">{{member.status}}</td>
 	                <td class="action"><a href="#"><span class="glyphicon glyphicon-transfer"></span></a></td>
 	            </tr>
@@ -33,12 +33,14 @@
 	
 	<script>
     $(document).ready(function(){
-       $('.input-wrap .dropdown-menu a').click(function(){
-            $('.input-wrap .dropdown-toggle').val($(this).text());
+    	$('#id_status').find('option[text="Administrator"]').addClass('red');
+    	
+       $('.input-wrap #id_status a').click(function(){
+            $('.input-wrap #id_status').val($(this).text());
             if ($(this).hasClass('red'))
-                $('.input-wrap .dropdown-toggle').addClass('red');
+                $('.input-wrap #id_status').addClass('red');
             else
-                $('.input-wrap .dropdown-toggle').removeClass('red');
+                $('.input-wrap #id_status').removeClass('red');
             if ($('.input-wrap .btn-group').hasClass('open'))
                $('.input-wrap .btn-group').removeClass('open');
             return false;

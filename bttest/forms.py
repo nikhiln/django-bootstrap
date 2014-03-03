@@ -8,6 +8,7 @@ from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
  
 class MemberForm(forms.Form):
     STATUS_TYPES = (
+        ('-1','Select'),
         ('Employee','Employee'),
         ('Administrator','Administrator'),
     )
@@ -47,3 +48,5 @@ class MemberForm(forms.Form):
                 css_class="col-button")
         )
         super(MemberForm, self).__init__(*args, **kwargs)
+        
+        self.fields['status'].widget.attrs['readonly'] = True
