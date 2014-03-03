@@ -2,8 +2,9 @@
 from django.shortcuts import render_to_response
 from django.shortcuts import RequestContext
 from forms import MemberForm
+from awaazde.streamit.views import members
  
-def index(request):
+def index(request, id):
     #Passing member data from view, these data should be retrieved from database
     members = [
         {'id': '1', 'name': 'McGiney, Mark', 'email': 'mark@marksautomark.com', 'status' : 'Administrator'},
@@ -12,6 +13,16 @@ def index(request):
         {'id': '4', 'name': 'O\'Brieb, Barbara', 'email': 'barbara@marksautomark.com', 'status' : 'Employee'},
     ]
     
+    if id:
+        index = 0
+        for member in members:
+            if member.id == id:
+                break
+            index = index + 1
+            
+        
+        del members[index]
+        return render_to_response('index.html', {'form': member_form, 'members': members}, context_instance=RequestContext(request))
     if request.method == 'POST':
         params = request.POST
         member_form = MemberForm(request.POST)

@@ -33,17 +33,14 @@
 	
 	<script>
     $(document).ready(function(){
-    	$('#id_status').find('option[text="Administrator"]').addClass('red');
-    	
-       $('.input-wrap #id_status a').click(function(){
-            $('.input-wrap #id_status').val($(this).text());
-            if ($(this).hasClass('red'))
-                $('.input-wrap #id_status').addClass('red');
+       $('.input-wrap .dropdown-menu option[value="Administrator"]').addClass('red');
+       $('.input-wrap .dropdown-menu').change(function(){
+            if ($(this).val() == "Administrator")
+                $(this).addClass('red');
             else
-                $('.input-wrap #id_status').removeClass('red');
-            if ($('.input-wrap .btn-group').hasClass('open'))
-               $('.input-wrap .btn-group').removeClass('open');
-            return false;
+                $(this).removeClass('red');
+            
+            return true;
        });
 
        $('.member-list td.action a').click(function(){
