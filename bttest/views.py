@@ -38,5 +38,5 @@ def delete(request, id):
             index = index + 1
             
         
-        del MEMBER[index]
+        del members[index]
         return render_to_response('index.html', {'form': member_form, 'members': members}, context_instance=RequestContext(request))

@@ -35,8 +35,11 @@
     $(document).ready(function(){
        $('#id_status option[value="Administrator"]').addClass('red');
        $('#id_status').change(function(){
-            if ($(this).val() == "Administrator")
+            if ($(this).val() == "Administrator") {
                 $(this).addClass('red');
+                $('#id_status option"]').removeClass('red');
+       			$('#id_status option[value="Administrator"]').addClass('red');         
+            }
             else
                 $(this).removeClass('red');
             
